@@ -1,3 +1,3 @@
 import useLoader from "./useLoader";
 
-export default useLoader
+export {useLoader}

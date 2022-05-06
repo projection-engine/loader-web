@@ -2,15 +2,22 @@
   "name": "projection-engine",
   "version": "0.0.11-alpha",
   "description": "Engine loader for React app",
-  "main": "index.js",
+
   "repository": "git@github.com:projection-engine/loader-web.git",
   "author": "facobackup <gustavomicaelbarbosa@gmail.com>",
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.js",
+  "engines": {
+    "node": ">=10"
+  },
   "dependencies": {
     "@rollup/plugin-image": "^2.1.1",
     "i": "^0.3.7",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "gl-matrix": "^3.4.3"
   },
   "scripts": {
     "start": "rollup -c"

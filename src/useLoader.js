@@ -1,7 +1,5 @@
-import useEngineEssentials, {ENTITY_ACTIONS} from "./engine/hooks/useEngineEssentials";
-import EditorEngine from "./engine/editor/EditorEngine";
+import useEngineEssentials, {ENTITY_ACTIONS} from "./engine/useEngineEssentials";
 import SYSTEMS from "./engine/templates/SYSTEMS";
-import CAMERA_TYPES from "./engine/editor/camera/CAMERA_TYPES";
 import {useEffect, useMemo, useState} from "react";
 import MeshInstance from "./engine/instances/MeshInstance";
 import MaterialInstance from "./engine/instances/MaterialInstance";
@@ -22,6 +20,7 @@ import CubeMapComponent from "./engine/components/CubeMapComponent";
 import CubeMapInstance from "./engine/instances/CubeMapInstance";
 import CameraComponent from "./engine/components/CameraComponent";
 import ScriptComponent from "./engine/components/ScriptComponent";
+import Renderer from "./engine/Renderer";
 
 const DATA_TYPES = {
     ENTITY: 0,
@@ -54,7 +53,7 @@ export default function useLoader(id, loader) {
 
     const renderer = useMemo(() => {
         if (gpu)
-            return new EditorEngine(id, gpu, {w: window.screen.width, h: window.screen.height}, SYSTEMS.MESH)
+            return new Renderer(gpu, {w: window.screen.width, h: window.screen.height}, [SYSTEMS.MESH, SYSTEMS.SHADOWS, SYSTEMS.SCRIPT, SYSTEMS.TRANSFORMATION, SYSTEMS.CUBE_MAP, SYSTEMS.PICK])
         return undefined
     }, [gpu])
     useEffect(() => {
